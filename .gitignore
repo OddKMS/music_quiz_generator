@@ -10,3 +10,6 @@ dist-ssr
 
 # Editor directories and files
 !.vscode/extensions.json
+
+# Secrets and sensitive files
+spotify_secret.txt
