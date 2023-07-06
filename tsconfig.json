@@ -18,7 +18,8 @@
 
     "paths": {
       "@/*": ["src/*"],
-      "@helpers/*": ["src/lib/helpers/*"]
+      "@helpers/*": ["src/lib/helpers/*"],
+      "*": ["src/types/*"]
     }
   },
   "include": ["src"],
