@@ -1,0 +1,1 @@
+export { authenticateWithSpotify } from './SpotifyAuthenticator';
