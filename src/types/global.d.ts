@@ -1,5 +1,5 @@
 declare type Authenticator = () => {
-  authenticate: () => AuthenticationObject;
+  authenticate: () => Promise<AuthenticationObject>;
 };
 
 declare type AuthenticationObject = {

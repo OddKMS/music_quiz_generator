@@ -4,12 +4,12 @@ import { authenticateWithSpotify } from '@helpers/SpotifyAuthenticator';
  * Authenticates the user
  * @returns
  */
-function authenticate() {
-  const auth = authenticateWithSpotify('ID', 'Secret');
-
-  return auth;
+async function authenticate() {
+  return await authenticateWithSpotify('ID', 'Secret');
 }
 
-export const Authenticator: Authenticator = () => {
+const Authenticator: Authenticator = () => {
   return { authenticate };
 };
+
+export default Authenticator;

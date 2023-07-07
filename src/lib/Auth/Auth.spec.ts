@@ -1,16 +1,16 @@
-import { describe, expect, it, vi } from 'vitest';
-import { Authenticator } from './Auth';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { createFetchResponse } from '@helpers';
+import Authenticator from '@lib/Auth';
 
 const mockAuthenticator = Authenticator();
-global.fetch = vi.fn();
 
 describe('The Authenticator', () => {
-  it('should contain an authentication function', () => {
+  it('should contain an authentication function', async () => {
     expect(mockAuthenticator).toHaveProperty('authenticate');
   });
 });
 
-describe('The authentication function', () => {
+describe('The authentication function', async () => {
   it('should return an authentication object', () => {
     const auth = mockAuthenticator.authenticate();
 
@@ -19,9 +19,24 @@ describe('The authentication function', () => {
 });
 
 describe('The returned Authentication object', () => {
-  it('should contain an access token', () => {
-    const auth = mockAuthenticator.authenticate();
+  it('should contain an access token', async () => {
+    const authResponse = {
+      access_token: '',
+      token_type: '',
+      expires_in: 0,
+    };
+
+    global.fetch = vi
+      .fn()
+      .mockResolvedValueOnce(createFetchResponse(authResponse));
+
+    const auth = await mockAuthenticator.authenticate();
 
     expect(auth).toHaveProperty('access_token');
   });
+});
+
+beforeEach(() => {
+  vi.clearAllMocks;
+  global.fetch = vi.fn();
 });
