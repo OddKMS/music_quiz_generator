@@ -1,7 +1,8 @@
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { Authenticator } from './Auth';
 
 const mockAuthenticator = Authenticator();
+global.fetch = vi.fn();
 
 describe('The Authenticator', () => {
   it('should contain an authentication function', () => {

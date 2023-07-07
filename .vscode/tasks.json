@@ -50,6 +50,11 @@
         "clear": true,
         "group": "vite_watch"
       }
+    },
+    {
+      "label": "Dev: Test & Watch",
+      "dependsOn": ["run dev server", "npm: test"],
+      "problemMatcher": []
     }
   ]
 }

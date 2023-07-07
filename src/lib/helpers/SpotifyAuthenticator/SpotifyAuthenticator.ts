@@ -1,14 +1,22 @@
-function authenticateWithSpotify(
-  clientID: string,
-  clientSecret: string,
-): AuthenticationObject {
-  const authObj = {
-    access_token: 'tokenToken',
-    token_type: 'Bearer',
-    expires_in: 200,
-  };
+async function authenticateWithSpotify(clientID: string, clientSecret: string) {
+  const spotifyUrl = 'https://accounts.spotify.com/api/token';
 
-  return authObj;
+  const response = await fetch(spotifyUrl, {
+    method: 'POST',
+    mode: 'cors',
+    cache: 'no-cache',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: JSON.stringify({
+      grant_type: 'client_credentials',
+      client_id: clientID,
+      client_secret: clientSecret,
+    }),
+  });
+
+  return response?.json();
 }
 
 export { authenticateWithSpotify };
