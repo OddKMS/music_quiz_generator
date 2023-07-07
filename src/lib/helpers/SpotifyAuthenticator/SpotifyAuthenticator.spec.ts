@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { createFetchResponse } from '@helpers';
 import * as spotifyAuth from '@helpers/SpotifyAuthenticator';
 
 const spotifyUrl = 'https://accounts.spotify.com/api/token';
@@ -60,8 +61,8 @@ it('should return an object with access token, token type, and expiration time',
     token_type: '',
     expires_in: 0,
   };
-  global.fetch = vi
 
+  global.fetch = vi
     .fn()
     .mockResolvedValueOnce(createFetchResponse(authResponse));
 
@@ -75,10 +76,6 @@ beforeEach(() => {
   vi.clearAllMocks;
   global.fetch = vi.fn();
 });
-
-function createFetchResponse(data: any) {
-  return { json: () => new Promise((resolve) => resolve(data)) };
-}
 
 const testAuthenticate = async (clientId?: string, clientSecret?: string) => {
   return await spotifyAuth.authenticateWithSpotify(
