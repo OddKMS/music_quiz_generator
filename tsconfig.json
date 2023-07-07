@@ -18,7 +18,9 @@
 
     "paths": {
       "@/*": ["src/*"],
+      "@helpers": ["src/lib/helpers"],
       "@helpers/*": ["src/lib/helpers/*"],
+      "@lib/*": ["src/lib/*"],
       "*": ["src/types/*"]
     }
   },

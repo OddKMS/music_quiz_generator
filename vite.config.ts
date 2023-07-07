@@ -10,6 +10,7 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src'),
       '@helpers': path.resolve(__dirname, './src/lib/helpers'),
+      '@lib': path.resolve(__dirname, './src/lib'),
     },
   },
   plugins: [react()],
