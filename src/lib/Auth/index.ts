@@ -1,4 +1,1 @@
-import Authenticator from './Auth';
-export default Authenticator;
-
-export { getClientID, getClientSecret } from './Auth';
+export { authenticate, getClientID, getClientSecret } from './Auth';

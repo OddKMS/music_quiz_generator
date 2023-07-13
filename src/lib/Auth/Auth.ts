@@ -44,12 +44,7 @@ function getClientSecret() {
  * @returns
  */
 async function authenticate() {
-  return await authenticateWithSpotify('ID', 'Secret');
+  return await authenticateWithSpotify(getClientID(), getClientSecret());
 }
 
-const Authenticator: Authenticator = () => {
-  return { authenticate };
-};
-
-export default Authenticator;
-export { getClientID, getClientSecret };
+export { authenticate, getClientID, getClientSecret };
