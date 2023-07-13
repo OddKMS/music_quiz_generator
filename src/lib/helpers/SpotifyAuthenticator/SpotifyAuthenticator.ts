@@ -7,12 +7,13 @@ async function authenticateWithSpotify(clientID: string, clientSecret: string) {
     cache: 'no-cache',
     credentials: 'include',
     headers: {
+      Authorization:
+        'Basic ' +
+        Buffer.from(clientID + ':' + clientSecret).toString('base64'),
       'Content-Type': 'application/x-www-form-urlencoded',
     },
     body: JSON.stringify({
       grant_type: 'client_credentials',
-      client_id: clientID,
-      client_secret: clientSecret,
     }),
   });
 

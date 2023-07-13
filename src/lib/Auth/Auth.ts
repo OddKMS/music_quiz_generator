@@ -43,7 +43,7 @@ function getClientSecret() {
  * Authenticates the user
  * @returns
  */
-async function authenticate() {
+async function authenticate(): Promise<AuthenticationObject> {
   return await authenticateWithSpotify(getClientID(), getClientSecret());
 }
 

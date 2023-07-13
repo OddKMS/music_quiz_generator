@@ -1,10 +1,14 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { createFetchResponse } from '@helpers';
 import * as spotifyAuth from '@helpers/SpotifyAuthenticator';
 
 const spotifyUrl = 'https://accounts.spotify.com/api/token';
 const baseClientId = 'Ident';
 const baseClientSecret = 'Shush';
+
+beforeAll(() => {
+  global.fetch = vi.fn();
+});
 
 describe('The Spotify Authenticator', () => {
   it('should contain a function authenticating the application', () => {
@@ -42,12 +46,15 @@ describe('The authentication function', () => {
         cache: 'no-cache',
         credentials: 'include',
         headers: {
+          Authorization:
+            'Basic ' +
+            Buffer.from(baseClientId + ':' + baseClientSecret).toString(
+              'base64',
+            ),
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: JSON.stringify({
           grant_type: 'client_credentials',
-          client_id: baseClientId,
-          client_secret: baseClientSecret,
         }),
       }),
     );
@@ -70,11 +77,6 @@ it('should return an object with access token, token type, and expiration time',
   await testAuthenticate();
 
   expect(spotifyAuth.authenticateWithSpotify).toHaveReturnedWith(authResponse);
-});
-
-beforeEach(() => {
-  vi.clearAllMocks;
-  global.fetch = vi.fn();
 });
 
 const testAuthenticate = async (clientId?: string, clientSecret?: string) => {
