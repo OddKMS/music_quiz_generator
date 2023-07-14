@@ -1,41 +1,22 @@
 import { authenticateWithSpotify } from '@helpers/SpotifyAuthenticator';
-import { clientIdFile, clientSecretFile } from '@lib/secrets';
-import { readFileSync } from 'fs';
-import path from 'path';
-import { cwd } from 'process';
 
-function getClientID() {
-  try {
-    const clientId = readFileSync(path.join(cwd(), clientIdFile), 'utf-8');
+function getClientID(): string {
+  const clientId = process.env.SPOTIFY_CLIENT_ID;
 
+  if (!!clientId) {
     return clientId;
-  } catch (e) {
-    if (e instanceof Error) {
-      if (e.message.startsWith('ENOENT')) {
-        throw new Error('ClientID File could not be found.');
-      } else {
-        throw e;
-      }
-    }
+  } else {
+    throw new Error('Client ID is not set, check config.');
   }
 }
 
 function getClientSecret() {
-  try {
-    const clientSecret = readFileSync(
-      path.join(cwd(), clientSecretFile),
-      'utf-8',
-    );
+  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 
+  if (!!clientSecret) {
     return clientSecret;
-  } catch (e) {
-    if (e instanceof Error) {
-      if (e.message.startsWith('ENOENT')) {
-        throw new Error('Client Secret File could not be found.');
-      } else {
-        throw e;
-      }
-    }
+  } else {
+    throw new Error('Client Secret is not set, check config.');
   }
 }
 

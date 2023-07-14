@@ -16,6 +16,9 @@ describe('The authentication function', async () => {
 
   describe('The returned Authentication object', () => {
     it('should contain an access token', async () => {
+      vi.stubEnv('SPOTIFY_CLIENT_ID', 'testClientId');
+      vi.stubEnv('SPOTIFY_CLIENT_SECRET', 'testClientSecret');
+
       const authResponse = {
         access_token: '',
         token_type: '',
@@ -29,72 +32,65 @@ describe('The authentication function', async () => {
       const authObj = await authenticate();
 
       expect(authObj).toHaveProperty('access_token');
+      vi.unstubAllEnvs();
     });
   });
 });
 
 describe('The getClientID function', () => {
-  it('should return the ClientID', async () => {
-    const fs = await import('fs');
-    fs.readFileSync = vi.fn().mockReturnValueOnce('testClientId');
+  it('should return the ClientID', () => {
+    vi.stubEnv('SPOTIFY_CLIENT_ID', 'testClientId');
 
     const clientId = getClientID();
 
     expect(clientId).not.toBeNull();
     expect(clientId).toBeTypeOf('string');
     expect(clientId).toBe('testClientId');
+
+    vi.unstubAllEnvs();
   });
 
-  it('should throw an error if the file does not exist', async () => {
-    const fs = await import('fs');
-    fs.readFileSync = vi.fn().mockImplementationOnce(() => {
-      throw new Error();
-    });
+  it('should throw an error if the file does not exist', () => {
+    vi.unstubAllEnvs();
 
     expect(getClientID).toThrow();
   });
 
   describe('The ClientID file missing error', () => {
-    it('should explain that the file is missing', async () => {
-      const fs = await import('fs');
-      fs.readFileSync = vi.fn().mockImplementationOnce(() => {
-        throw new Error('ENOENT');
-      });
+    it('should explain that the file is missing', () => {
+      vi.unstubAllEnvs();
 
-      expect(getClientID).toThrow('ClientID File could not be found.');
+      expect(getClientID).toThrow('Client ID is not set, check config.');
     });
   });
 });
 
 describe('The getClientSecret function', () => {
   it('should return the ClientSecret', async () => {
-    const fs = await import('fs');
-    fs.readFileSync = vi.fn().mockReturnValueOnce('testClientSecret');
+    vi.stubEnv('SPOTIFY_CLIENT_SECRET', 'testClientSecret');
 
     const clientSecret = getClientSecret();
 
     expect(clientSecret).not.toBeNull();
     expect(clientSecret).toBeTypeOf('string');
     expect(clientSecret).toBe('testClientSecret');
+
+    vi.unstubAllEnvs();
   });
 
   it('should throw an error if the file does not exist', async () => {
-    const fs = await import('fs');
-    fs.readFileSync = vi.fn().mockImplementationOnce(() => {
-      throw new Error();
-    });
+    vi.unstubAllEnvs();
 
     expect(getClientSecret).toThrow();
   });
 
   describe('The ClientSecret file missing error', () => {
     it('should explain that the file is missing', async () => {
-      const fs = await import('fs');
-      fs.readFileSync = vi.fn().mockImplementationOnce(() => {
-        throw new Error('ENOENT');
-      });
+      vi.unstubAllEnvs();
 
-      expect(getClientSecret).toThrow('Client Secret File could not be found.');
+      expect(getClientSecret).toThrow(
+        'Client Secret is not set, check config.',
+      );
     });
   });
 });

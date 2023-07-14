@@ -11,9 +11,5 @@ dist-ssr
 # Editor directories and files
 !.vscode/extensions.json
 
-# Secrets and sensitive files
-src/lib/secrets
-!src/lib/secrets/index.ts
-
 # Tests and coverage
 coverage
