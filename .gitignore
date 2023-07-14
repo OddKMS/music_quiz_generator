@@ -11,5 +11,13 @@ dist-ssr
 # Editor directories and files
 !.vscode/extensions.json
 
+# Dotenv
+.env
+.env.me
+
 # Tests and coverage
 coverage
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
