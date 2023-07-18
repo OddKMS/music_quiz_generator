@@ -1,9 +1,9 @@
 import { authenticateWithSpotify } from '@helpers/SpotifyAuthenticator';
 
 function getClientID(): string {
-  const clientId = process.env.SPOTIFY_CLIENT_ID;
+  const clientId = import.meta.env.SPOTIFY_CLIENT_ID;
 
-  if (!!clientId) {
+  if (!!clientId && clientId != 'undefined') {
     return clientId;
   } else {
     throw new Error('Client ID is not set, check config.');
@@ -11,9 +11,9 @@ function getClientID(): string {
 }
 
 function getClientSecret() {
-  const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+  const clientSecret = import.meta.env.SPOTIFY_CLIENT_SECRET;
 
-  if (!!clientSecret) {
+  if (!!clientSecret && clientSecret != 'undefined') {
     return clientSecret;
   } else {
     throw new Error('Client Secret is not set, check config.');

@@ -1,10 +1,28 @@
-import { beforeAll, describe, expect, it, vi } from 'vitest';
+import {
+  afterAll,
+  afterEach,
+  beforeAll,
+  beforeEach,
+  describe,
+  expect,
+  it,
+  vi,
+} from 'vitest';
 import { createFetchResponse } from '@helpers';
 import { authenticate, getClientID, getClientSecret } from '@lib/Auth';
 
 beforeAll(() => {
   global.fetch = vi.fn();
   vi.mock('fs');
+});
+
+beforeEach(() => {
+  vi.stubEnv('SPOTIFY_CLIENT_ID', 'testClientId');
+  vi.stubEnv('SPOTIFY_CLIENT_SECRET', 'testClientSecret');
+});
+
+afterEach(() => {
+  vi.unstubAllEnvs();
 });
 
 describe('The authentication function', async () => {
@@ -16,9 +34,6 @@ describe('The authentication function', async () => {
 
   describe('The returned Authentication object', () => {
     it('should contain an access token', async () => {
-      vi.stubEnv('SPOTIFY_CLIENT_ID', 'testClientId');
-      vi.stubEnv('SPOTIFY_CLIENT_SECRET', 'testClientSecret');
-
       const authResponse = {
         access_token: '',
         token_type: '',
@@ -32,32 +47,27 @@ describe('The authentication function', async () => {
       const authObj = await authenticate();
 
       expect(authObj).toHaveProperty('access_token');
-      vi.unstubAllEnvs();
     });
   });
 });
 
 describe('The getClientID function', () => {
   it('should return the ClientID', () => {
-    vi.stubEnv('SPOTIFY_CLIENT_ID', 'testClientId');
-
     const clientId = getClientID();
 
     expect(clientId).not.toBeNull();
     expect(clientId).toBeTypeOf('string');
     expect(clientId).toBe('testClientId');
-
-    vi.unstubAllEnvs();
   });
 
-  it('should throw an error if the file does not exist', () => {
+  it('should throw an error if the env variable is not set', () => {
     vi.unstubAllEnvs();
 
     expect(getClientID).toThrow();
   });
 
-  describe('The ClientID file missing error', () => {
-    it('should explain that the file is missing', () => {
+  describe('The ClientID not set error', () => {
+    it('should explain that the env variable is not set', () => {
       vi.unstubAllEnvs();
 
       expect(getClientID).toThrow('Client ID is not set, check config.');
@@ -67,25 +77,21 @@ describe('The getClientID function', () => {
 
 describe('The getClientSecret function', () => {
   it('should return the ClientSecret', async () => {
-    vi.stubEnv('SPOTIFY_CLIENT_SECRET', 'testClientSecret');
-
     const clientSecret = getClientSecret();
 
     expect(clientSecret).not.toBeNull();
     expect(clientSecret).toBeTypeOf('string');
     expect(clientSecret).toBe('testClientSecret');
-
-    vi.unstubAllEnvs();
   });
 
-  it('should throw an error if the file does not exist', async () => {
+  it('should throw an error if the env variable is not set', async () => {
     vi.unstubAllEnvs();
 
     expect(getClientSecret).toThrow();
   });
 
-  describe('The ClientSecret file missing error', () => {
-    it('should explain that the file is missing', async () => {
+  describe('The ClientSecret not set error', () => {
+    it('should explain that the env variable is not set', async () => {
       vi.unstubAllEnvs();
 
       expect(getClientSecret).toThrow(
