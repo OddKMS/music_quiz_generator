@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest';
-import { createFetchResponse } from '@helpers';
-import * as spotifyAuth from '@helpers/SpotifyAuthenticator';
+import { createFetchResponse } from '#helpers';
+import * as spotifyAuth from '#helpers/SpotifyAuthenticator';
 
 const spotifyUrl = 'https://accounts.spotify.com/api/token';
 const baseClientId = 'Ident';

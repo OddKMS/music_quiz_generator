@@ -1,8 +1,8 @@
 export { render };
 
 import { hydrateRoot } from 'react-dom/client';
-import { PageShell } from '@components/PageShell';
-import type { PageContextClient } from '@musicquizgenerator/types';
+import { PageShell } from '#components/PageShell';
+import type { PageContextClient } from '#musicquizgenerator/types';
 
 // This render() hook only supports SSR, see https://vite-plugin-ssr.com/render-modes for how to modify render() to support SPA
 async function render(pageContext: PageContextClient) {

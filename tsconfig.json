@@ -8,6 +8,7 @@
     "types": ["vite/client"],
     "module": "ESNext",
     "skipLibCheck": true,
+    "composite": true,
 
     /* Bundler mode */
     "moduleResolution": "Bundler",
@@ -19,15 +20,15 @@
 
     "paths": {
       "*": ["src/types/*"],
-      "@musicquizgenerator/*": ["src/*"],
-      "@assets": ["src/assets"],
-      "@helpers": ["src/lib/helpers"],
-      "@helpers/*": ["src/lib/helpers/*"],
-      "@lib/*": ["src/lib/*"],
-      "@components/*": ["src/client/components/*"],
-      "@server/*": ["src/server/*"],
-      "@hooks/*": ["src/client/hooks/*"],
-      "@musicquizgenerator/types": ["src/types"]
+      "#musicquizgenerator/*": ["src/*"],
+      "#assets": ["src/assets"],
+      "#helpers": ["src/lib/helpers"],
+      "#helpers/*": ["src/lib/helpers/*"],
+      "#lib/*": ["src/lib/*"],
+      "#components/*": ["src/client/components/*"],
+      "#server/*": ["src/server/*"],
+      "#hooks/*": ["src/client/hooks/*"],
+      "#musicquizgenerator/types": ["src/types"]
     }
   },
   "include": ["src"],

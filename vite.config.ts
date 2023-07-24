@@ -9,14 +9,14 @@ import path from 'path';
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@assets': path.resolve(__dirname, './src/assets'),
-      '@helpers': path.resolve(__dirname, './src/lib/helpers'),
-      '@lib': path.resolve(__dirname, './src/lib'),
-      '@components': path.resolve(__dirname, './src/client/components'),
-      '@server': path.resolve(__dirname, './src/server'),
-      '@hooks': path.resolve(__dirname, './src/client/hooks'),
-      '@musicquizgenerator/types': path.resolve(__dirname, './src/types'),
+      '#': path.resolve(__dirname, './src'),
+      '#assets': path.resolve(__dirname, './src/assets'),
+      '#helpers': path.resolve(__dirname, './src/lib/helpers'),
+      '#lib': path.resolve(__dirname, './src/lib'),
+      '#components': path.resolve(__dirname, './src/client/components'),
+      '#server': path.resolve(__dirname, './src/server'),
+      '#hooks': path.resolve(__dirname, './src/client/hooks'),
+      '#musicquizgenerator/types': path.resolve(__dirname, './src/types'),
     },
   },
   plugins: [react(), ssr()],

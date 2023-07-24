@@ -8,8 +8,8 @@ import {
   it,
   vi,
 } from 'vitest';
-import { createFetchResponse } from '@helpers';
-import { authenticate, getClientID, getClientSecret } from '@lib/Auth';
+import { createFetchResponse } from '#helpers';
+import { authenticate, getClientID, getClientSecret } from '#lib/Auth';
 
 beforeAll(() => {
   global.fetch = vi.fn();

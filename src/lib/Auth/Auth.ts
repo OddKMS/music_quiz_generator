@@ -1,4 +1,4 @@
-import { authenticateWithSpotify } from '@helpers/SpotifyAuthenticator';
+import { authenticateWithSpotify } from '#helpers/SpotifyAuthenticator';
 
 function getClientID(): string {
   const clientId = import.meta.env.SPOTIFY_CLIENT_ID;

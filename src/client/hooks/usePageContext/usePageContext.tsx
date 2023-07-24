@@ -2,7 +2,7 @@
 // See https://vite-plugin-ssr.com/pageContext-anywhere
 
 import React, { useContext } from 'react';
-import { PageContext } from '@musicquizgenerator/types';
+import { PageContext } from '#musicquizgenerator/types';
 
 const Context = React.createContext<PageContext>(
   undefined as unknown as PageContext,

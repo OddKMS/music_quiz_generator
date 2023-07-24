@@ -1,9 +1,9 @@
 import React from 'react';
-import logo from '@assets/logo.svg';
-import { PageContextProvider } from '@hooks/usePageContext';
-import type { PageContext } from '@musicquizgenerator/types';
+import logo from '#assets/logo.svg';
+import { PageContextProvider } from '#hooks/usePageContext';
+import type { PageContext } from '#musicquizgenerator/types';
 import './PageShell.css';
-import { Link } from '@components/Link';
+import { Link } from '#components/Link';
 
 export { PageShell };
 

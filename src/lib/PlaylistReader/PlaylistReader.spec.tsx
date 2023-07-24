@@ -1,8 +1,8 @@
 import { beforeAll, describe, expect, expectTypeOf, it, vi } from 'vitest';
-import { getPlaylist } from '@lib/PlaylistReader';
-import { authenticate } from '@lib/Auth';
+import { getPlaylist } from '#lib/PlaylistReader';
+import { authenticate } from '#lib/Auth';
 
-vi.mock('@lib/Auth');
+vi.mock('#lib/Auth');
 
 beforeAll(() => {
   global.fetch = vi.fn();

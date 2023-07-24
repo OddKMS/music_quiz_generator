@@ -1,13 +1,15 @@
-export { render };
 // See https://vite-plugin-ssr.com/data-fetching
 export const passToClient = ['pageProps', 'urlPathname'];
 import ReactDOMServer from 'react-dom/server';
-import { PageShell } from '@components/PageShell';
+import { PageShell } from '#components/PageShell';
 import { escapeInject, dangerouslySkipEscape } from 'vite-plugin-ssr/server';
-import logoUrl from '@assets/logo.svg';
-import type { PageContextServer } from '@musicquizgenerator/types';
+import logoUrl from '#assets/logo.svg';
+import type { PageContextServer } from '#musicquizgenerator/types';
 
-async function render(pageContext: PageContextServer) {
+async function render(pageContext: PageContextServer): Promise<{
+  documentHtml: {};
+  pageContext: {};
+}> {
   const { Page, pageProps } = pageContext;
   // This render() hook only supports SSR, see https://vite-plugin-ssr.com/render-modes for how to modify render() to support SPA
   if (!Page)
@@ -46,3 +48,5 @@ async function render(pageContext: PageContextServer) {
     },
   };
 }
+
+export { render };
