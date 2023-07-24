@@ -1,14 +1,16 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    "rootDir": ".",
     "target": "ES2022",
     "useDefineForClassFields": true,
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "types": ["vite/client"],
     "module": "ESNext",
     "skipLibCheck": true,
 
     /* Bundler mode */
-    "moduleResolution": "bundler",
+    "moduleResolution": "Bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -16,11 +18,16 @@
     "jsx": "react-jsx",
 
     "paths": {
-      "@/*": ["src/*"],
+      "*": ["src/types/*"],
+      "@musicquizgenerator/*": ["src/*"],
+      "@assets": ["src/assets"],
       "@helpers": ["src/lib/helpers"],
       "@helpers/*": ["src/lib/helpers/*"],
       "@lib/*": ["src/lib/*"],
-      "*": ["src/types/*"]
+      "@components/*": ["src/client/components/*"],
+      "@server/*": ["src/server/*"],
+      "@hooks/*": ["src/client/hooks/*"],
+      "@musicquizgenerator/types": ["src/types"]
     }
   },
   "include": ["src"],

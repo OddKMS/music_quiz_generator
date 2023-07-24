@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
@@ -6,7 +6,15 @@ import { authenticate } from '@lib/Auth';
 
 function App() {
   const [count, setCount] = useState(0);
-  const test = authenticate();
+  const [auth, setAuth] = useState<AuthenticationObject>({
+    access_token: '',
+    token_type: '',
+    expires_in: 0,
+  });
+
+  authenticate().then(() => {
+    setAuth;
+  });
 
   return (
     <>
@@ -19,6 +27,10 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <div>Authenticate test</div>
+      <div>Access token: {auth.access_token}</div>
+      <div>Type: {auth.token_type}</div>
+      <div>Expires in: {auth.expires_in}</div>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
