@@ -1,8 +1,18 @@
+import React, { useState } from 'react';
 import { Counter } from '#components/Counter';
-
-export { Page };
+import { authenticate } from '#lib/Auth';
 
 function Page() {
+  const [auth, setAuth] = useState<AuthenticationObject>({
+    access_token: '',
+    token_type: '',
+    expires_in: 0,
+  });
+
+  authenticate().then(() => {
+    setAuth;
+  });
+
   return (
     <>
       <h1>Welcome</h1>
@@ -16,3 +26,5 @@ function Page() {
     </>
   );
 }
+
+export { Page };

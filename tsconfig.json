@@ -31,6 +31,10 @@
       "#musicquizgenerator/types": ["src/types"]
     }
   },
+  "ts-node": {
+    // Tell ts-node CLI to install the --loader automatically
+    "esm": false
+  },
   "include": ["src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
