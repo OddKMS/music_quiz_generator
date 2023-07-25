@@ -9,10 +9,6 @@ function Page() {
     expires_in: 0,
   });
 
-  authenticate().then(() => {
-    setAuth;
-  });
-
   return (
     <>
       <h1>Welcome</h1>
@@ -21,6 +17,10 @@ function Page() {
         <li>Rendered to HTML.</li>
         <li>
           Interactive. <Counter />
+          <div>Authenticate test</div>
+          <div>Access token: {auth.access_token}</div>
+          <div>Type: {auth.token_type}</div>
+          <div>Expires in: {auth.expires_in}</div>
         </li>
       </ul>
     </>
