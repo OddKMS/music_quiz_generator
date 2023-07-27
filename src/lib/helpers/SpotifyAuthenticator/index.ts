@@ -1,1 +1,1 @@
-export { authenticateWithSpotify } from './SpotifyAuthenticator';
+export { getSpotifyClientToken } from './SpotifyAuthenticator';

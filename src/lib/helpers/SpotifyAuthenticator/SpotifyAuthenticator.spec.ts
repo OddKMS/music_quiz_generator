@@ -11,16 +11,16 @@ beforeAll(() => {
 });
 
 describe('The Spotify Authenticator', () => {
-  it('should contain a function authenticating the application', () => {
-    expect(spotifyAuth.authenticateWithSpotify).toBeTypeOf('function');
+  it('should contain a function to get the application token from Spotify', () => {
+    expect(spotifyAuth.getSpotifyClientToken).toBeTypeOf('function');
   });
 });
 
-describe('The authentication function', () => {
+describe('The getSpotifyClientToken function', () => {
   it('should accept a client id and secret as parameters', async () => {
-    const spy = vi.spyOn(spotifyAuth, 'authenticateWithSpotify');
+    const spy = vi.spyOn(spotifyAuth, 'getSpotifyClientToken');
 
-    await testAuthenticate();
+    await testGetToken();
 
     expect(spy).toBeCalledWith(baseClientId, baseClientSecret);
   });
@@ -36,7 +36,7 @@ describe('The authentication function', () => {
       .fn()
       .mockResolvedValueOnce(createFetchResponse(authResponse));
 
-    const auth = await testAuthenticate();
+    const auth = await testGetToken();
 
     expect(fetch).toHaveBeenCalledWith(
       spotifyUrl,
@@ -53,34 +53,34 @@ describe('The authentication function', () => {
             ),
           'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: JSON.stringify({
-          grant_type: 'client_credentials',
-        }),
+        body: 'grant_type=client_credentials',
       }),
     );
     expect(auth).toEqual(authResponse);
   });
+
+  it('should throw an exception ', () => {});
+
+  it('should return an object with access token, token type, and expiration time', async () => {
+    const authResponse = {
+      access_token: '',
+      token_type: '',
+      expires_in: 0,
+    };
+
+    global.fetch = vi
+      .fn()
+      .mockResolvedValueOnce(createFetchResponse(authResponse));
+
+    vi.spyOn(spotifyAuth, 'getSpotifyClientToken');
+    await testGetToken();
+
+    expect(spotifyAuth.getSpotifyClientToken).toHaveReturnedWith(authResponse);
+  });
 });
 
-it('should return an object with access token, token type, and expiration time', async () => {
-  const authResponse = {
-    access_token: '',
-    token_type: '',
-    expires_in: 0,
-  };
-
-  global.fetch = vi
-    .fn()
-    .mockResolvedValueOnce(createFetchResponse(authResponse));
-
-  vi.spyOn(spotifyAuth, 'authenticateWithSpotify');
-  await testAuthenticate();
-
-  expect(spotifyAuth.authenticateWithSpotify).toHaveReturnedWith(authResponse);
-});
-
-const testAuthenticate = async (clientId?: string, clientSecret?: string) => {
-  return await spotifyAuth.authenticateWithSpotify(
+const testGetToken = async (clientId?: string, clientSecret?: string) => {
+  return await spotifyAuth.getSpotifyClientToken(
     clientId ?? baseClientId,
     clientSecret ?? baseClientSecret,
   );

@@ -1,4 +1,4 @@
-async function authenticateWithSpotify(clientID: string, clientSecret: string) {
+async function getSpotifyClientToken(clientID: string, clientSecret: string) {
   const spotifyUrl = 'https://accounts.spotify.com/api/token';
 
   const response = await fetch(spotifyUrl, {
@@ -12,12 +12,10 @@ async function authenticateWithSpotify(clientID: string, clientSecret: string) {
         Buffer.from(clientID + ':' + clientSecret).toString('base64'),
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: JSON.stringify({
-      grant_type: 'client_credentials',
-    }),
+    body: 'grant_type=client_credentials',
   });
 
   return response?.json();
 }
 
-export { authenticateWithSpotify };
+export { getSpotifyClientToken };

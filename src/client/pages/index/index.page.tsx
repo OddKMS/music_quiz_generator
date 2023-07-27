@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Counter } from '#components/Counter';
-import { authenticate } from '#lib/Auth';
 
-function Page() {
-  const [auth, setAuth] = useState<AuthenticationObject>({
-    access_token: '',
-    token_type: '',
-    expires_in: 0,
-  });
+function Page({ auth }) {
+  // const [auth, setAuth] = useState<AuthenticationObject>({
+  //   access_token: '',
+  //   token_type: '',
+  //   expires_in: 0,
+  // });
 
   return (
     <>
@@ -18,9 +17,9 @@ function Page() {
         <li>
           Interactive. <Counter />
           <div>Authenticate test</div>
-          <div>Access token: {auth.access_token}</div>
-          <div>Type: {auth.token_type}</div>
-          <div>Expires in: {auth.expires_in}</div>
+          <div>Access token: {auth?.access_token}</div>
+          <div>Type: {auth?.token_type}</div>
+          <div>Expires in: {auth?.expires_in}</div>
         </li>
       </ul>
     </>

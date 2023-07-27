@@ -1,4 +1,4 @@
-import { authenticateWithSpotify } from '#helpers/SpotifyAuthenticator';
+import { getSpotifyClientToken } from '#helpers/SpotifyAuthenticator';
 
 function getClientID(): string {
   const clientId = import.meta.env.SPOTIFY_CLIENT_ID;
@@ -25,7 +25,7 @@ function getClientSecret() {
  * @returns
  */
 async function authenticate(): Promise<AuthenticationObject> {
-  return await authenticateWithSpotify(getClientID(), getClientSecret());
+  return await getSpotifyClientToken(getClientID(), getClientSecret());
 }
 
 export { authenticate, getClientID, getClientSecret };

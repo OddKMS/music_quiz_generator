@@ -1,5 +1,3 @@
-export { render };
-
 import { hydrateRoot } from 'react-dom/client';
 import { PageShell } from '#components/PageShell';
 import type { PageContextClient } from '#musicquizgenerator/types';
@@ -12,6 +10,7 @@ async function render(pageContext: PageContextClient) {
       'Client-side render() hook expects pageContext.Page to be defined',
     );
   }
+
   const root = document.getElementById('react-root');
   const page = (
     <PageShell pageContext={pageContext}>
@@ -29,3 +28,4 @@ async function render(pageContext: PageContextClient) {
 /* To enable Client-side Routing:
 export const clientRouting = true
 // !! WARNING !! Before doing so, read https://vite-plugin-ssr.com/clientRouting */
+export { render };
