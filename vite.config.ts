@@ -29,14 +29,4 @@ export default defineConfig({
   server: {
     middlewareMode: true,
   },
-  // for development only - move over to Server-Side
-  // rendering to keep secrets safe when moving to prod
-  define: {
-    'import.meta.env.SPOTIFY_CLIENT_ID': JSON.stringify(
-      process.env.SPOTIFY_CLIENT_ID,
-    ),
-    'import.meta.env.SPOTIFY_CLIENT_SECRET': JSON.stringify(
-      process.env.SPOTIFY_CLIENT_SECRET,
-    ),
-  },
 });
