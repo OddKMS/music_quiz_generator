@@ -1,13 +1,21 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest';
-import { createFetchResponse } from '#helpers';
-import * as spotifyAuth from '#helpers/SpotifyAuthenticator';
+import { createFetchResponse } from '#testHelpers';
+import * as spotifyAuth from './SpotifyAuthenticator';
 
 const spotifyUrl = 'https://accounts.spotify.com/api/token';
 const baseClientId = 'Ident';
 const baseClientSecret = 'Shush';
 
+const mockAuthResponse = {
+  access_token: '',
+  token_type: '',
+  expires_in: 0,
+};
+
 beforeAll(() => {
-  global.fetch = vi.fn();
+  global.fetch = vi.fn(() => {
+    return createFetchResponse(mockAuthResponse);
+  });
 });
 
 describe('The Spotify Authenticator', () => {
@@ -59,7 +67,17 @@ describe('The getSpotifyClientToken function', () => {
     expect(auth).toEqual(authResponse);
   });
 
-  it('should throw an exception ', () => {});
+  it.fails('should throw an exception if the response is not OK', async () => {
+    global.fetch = vi
+      .fn()
+      .mockResolvedValueOnce(createFetchResponse({}, false));
+
+    vi.spyOn(spotifyAuth, 'getSpotifyClientToken');
+
+    await testGetToken();
+
+    expect(spotifyAuth.getSpotifyClientToken).toThrow();
+  });
 
   it('should return an object with access token, token type, and expiration time', async () => {
     const authResponse = {
@@ -73,6 +91,7 @@ describe('The getSpotifyClientToken function', () => {
       .mockResolvedValueOnce(createFetchResponse(authResponse));
 
     vi.spyOn(spotifyAuth, 'getSpotifyClientToken');
+
     await testGetToken();
 
     expect(spotifyAuth.getSpotifyClientToken).toHaveReturnedWith(authResponse);

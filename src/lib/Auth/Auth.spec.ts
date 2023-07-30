@@ -8,12 +8,19 @@ import {
   it,
   vi,
 } from 'vitest';
-import { createFetchResponse } from '#helpers';
+import { createFetchResponse } from '#testHelpers';
 import { authenticate, getClientID, getClientSecret } from '#lib/Auth';
 
+const mockAuthResponse = {
+  access_token: '',
+  token_type: '',
+  expires_in: 0,
+};
+
 beforeAll(() => {
-  global.fetch = vi.fn();
-  vi.mock('fs');
+  global.fetch = vi.fn(() => {
+    return createFetchResponse(mockAuthResponse);
+  });
 });
 
 beforeEach(() => {

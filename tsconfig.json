@@ -24,6 +24,7 @@
       "#assets": ["src/assets"],
       "#helpers": ["src/lib/helpers"],
       "#helpers/*": ["src/lib/helpers/*"],
+      "#testHelpers": ["src/lib/helpers/testHelpers.ts"],
       "#lib/*": ["src/lib/*"],
       "#components/*": ["src/client/components/*"],
       "#server/*": ["src/server/*"],

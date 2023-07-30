@@ -12,6 +12,10 @@ export default defineConfig({
       '#': path.resolve(__dirname, './src'),
       '#assets': path.resolve(__dirname, './src/assets'),
       '#helpers': path.resolve(__dirname, './src/lib/helpers'),
+      '#testHelpers': path.resolve(
+        __dirname,
+        './src/lib/helpers/testHelpers.ts',
+      ),
       '#lib': path.resolve(__dirname, './src/lib'),
       '#components': path.resolve(__dirname, './src/client/components'),
       '#server': path.resolve(__dirname, './src/server'),
@@ -23,7 +27,6 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'jsdom',
-    restoreMocks: true,
     passWithNoTests: true,
   },
   server: {
