@@ -11,8 +11,8 @@
     "preview": "vite preview",
     "test": "npx vitest",
     "testcoverage": "vitest run --coverage",
-    "dotenv-pull": "dotenv-vault@latest pull",
-    "dotenv-push": "dotenv-vault@latest push"
+    "dotenv-pull": "npx dotenv-vault@latest pull",
+    "dotenv-push": "npx dotenv-vault@latest push"
   },
   "engines": {
     "npm": ">=9.8.0",
