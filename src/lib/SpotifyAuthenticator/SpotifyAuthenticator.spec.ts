@@ -1,4 +1,4 @@
-import { beforeAll, describe, expect, it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 import { createFetchResponse } from '#testHelpers';
 import * as spotifyAuth from './SpotifyAuthenticator';
 
@@ -12,10 +12,8 @@ const mockAuthResponse = {
   expires_in: 0,
 };
 
-beforeAll(() => {
-  global.fetch = vi.fn(() => {
-    return createFetchResponse(mockAuthResponse);
-  });
+global.fetch = vi.fn(async () => {
+  return createFetchResponse(mockAuthResponse);
 });
 
 describe('The Spotify Authenticator', () => {
@@ -81,9 +79,9 @@ describe('The getSpotifyClientToken function', () => {
 
   it('should return an object with access token, token type, and expiration time', async () => {
     const authResponse = {
-      access_token: '',
-      token_type: '',
-      expires_in: 0,
+      access_token: 'i-am-a-token',
+      token_type: 'situational comedy ethnic character',
+      expires_in: 69,
     };
 
     global.fetch = vi
