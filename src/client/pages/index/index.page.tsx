@@ -2,12 +2,6 @@ import React, { useState } from 'react';
 import { Counter } from '#components/Counter';
 
 function Page({ auth }) {
-  // const [auth, setAuth] = useState<AuthenticationObject>({
-  //   access_token: '',
-  //   token_type: '',
-  //   expires_in: 0,
-  // });
-
   return (
     <>
       <h1>Welcome</h1>
