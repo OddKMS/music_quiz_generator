@@ -1,11 +1,15 @@
 import { request } from '#lib/Fetch';
+import type { Playlist } from '@spotify/web-api-ts-sdk';
 
-async function getPlaylist(accessToken: string, playlistUrl: string) {
+async function getPlaylist(
+  accessToken: string,
+  playlistUrl: string,
+): Promise<Playlist> {
   const baseUrl = 'https://api.spotify.com/v1/playlists/';
 
   const playlistId = getPlaylistID(playlistUrl);
 
-  const response = await request(baseUrl + playlistId, {
+  const playlists = await request<Playlist>(baseUrl + playlistId, {
     method: 'GET',
     mode: 'cors',
     cache: 'no-cache',
@@ -16,7 +20,7 @@ async function getPlaylist(accessToken: string, playlistUrl: string) {
     },
   });
 
-  return response;
+  return playlists;
 }
 
 function getPlaylistID(playlistUrl: string) {
@@ -45,8 +49,4 @@ function getPlaylistID(playlistUrl: string) {
   }
 }
 
-function parsePlaylistJSON(playlistResponse: JSON) {
-  return 'foo';
-}
-
-export { getPlaylistID, getPlaylist, parsePlaylistJSON };
+export { getPlaylistID, getPlaylist };

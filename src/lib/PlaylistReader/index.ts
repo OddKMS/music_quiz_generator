@@ -1,1 +1,1 @@
-export { getPlaylist } from './PlaylistReader';
+export { getPlaylist, getPlaylistID } from './PlaylistReader';

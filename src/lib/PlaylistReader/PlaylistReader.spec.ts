@@ -1,8 +1,8 @@
 import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest';
-import { getPlaylist } from '#lib/PlaylistReader';
+import { getPlaylist, getPlaylistID } from '#lib/PlaylistReader';
 import { authenticate } from '#lib/Auth';
 import { createFetchResponse } from '#testHelpers';
-import { getPlaylistID, parsePlaylistJSON } from './PlaylistReader';
+import { Playlist } from '@spotify/web-api-ts-sdk';
 
 afterEach(() => {
   vi.restoreAllMocks();
@@ -28,12 +28,8 @@ describe('The get playlist function', () => {
     expectTypeOf(getPlaylist).parameter(1).toBeString();
   });
 
-  it('should return a JSON object containing the playlist', async () => {
-    const mockAuth = await authenticate();
-
-    const songs = getPlaylist(mockAuth.access_token, testPlaylist);
-
-    expectTypeOf(getPlaylist).returns.toEqualTypeOf<Promise<JSON>>();
+  it('should return a object containing the playlist', async () => {
+    expectTypeOf(getPlaylist).returns.toEqualTypeOf<Promise<Playlist>>();
   });
 });
 
@@ -80,12 +76,4 @@ describe('The getPlaylistID function', () => {
       expect(error.cause.message).toBe('No playlist ID found in URL');
     }
   });
-});
-
-describe('The parsePlaylistJSON function', () => {
-  it('should accept JSON as a parameter', () => {
-    expectTypeOf(parsePlaylistJSON).parameter(0).toMatchTypeOf(JSON);
-  });
-
-  it.todo('should return ?', () => {});
 });
