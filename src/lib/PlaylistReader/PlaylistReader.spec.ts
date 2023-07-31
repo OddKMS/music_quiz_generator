@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest';
 import { getPlaylist, getPlaylistID } from '#lib/PlaylistReader';
-import { createFetchResponse } from '#testHelpers';
+import { createFetchResponse } from '#libTestUtils';
 import { Playlist } from '@spotify/web-api-ts-sdk';
 
 afterEach(() => {

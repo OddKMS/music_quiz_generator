@@ -1,4 +1,4 @@
-function createFetchResponse(
+export function createFetchResponse(
   data: object,
   ok: boolean = true,
   statusText?: string,
@@ -11,5 +11,3 @@ function createFetchResponse(
     } as Response);
   });
 }
-
-export { createFetchResponse };

@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
-import { createFetchResponse } from '#testHelpers';
+import { createFetchResponse } from '#libTestUtils';
 import { authenticate, getClientID, getClientSecret } from '#lib/Auth';
 
 beforeEach(() => {

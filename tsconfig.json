@@ -24,9 +24,10 @@
       "#assets": ["src/assets"],
       "#helpers": ["src/lib/helpers"],
       "#helpers/*": ["src/lib/helpers/*"],
-      "#testHelpers": ["src/lib/helpers/testHelpers.ts"],
       "#lib/*": ["src/lib/*"],
       "#components/*": ["src/client/components/*"],
+      "#libTestUtils": ["src/lib/test/testUtils.ts"],
+      "#clientTestUtils": ["src/client/test/testUtils.tsx"],
       "#server/*": ["src/server/*"],
       "#hooks/*": ["src/client/hooks/*"],
       "#musicquizgenerator/types": ["src/types"]
