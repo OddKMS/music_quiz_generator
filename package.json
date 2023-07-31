@@ -14,6 +14,10 @@
     "dotenv-pull": "dotenv-vault@latest pull",
     "dotenv-push": "dotenv-vault@latest push"
   },
+  "engines": {
+    "npm": ">=9.8.0",
+    "node": ">=20.5.0"
+  },
   "compilerOptions": {
     "esModuleInterop": true
   },
