@@ -58,14 +58,14 @@ describe('The getClientID function', () => {
   });
 
   it('should throw an error if the env variable is not set', () => {
-    vi.unstubAllEnvs();
+    vi.stubEnv('SPOTIFY_CLIENT_ID', undefined);
 
     expect(getClientID).toThrow();
   });
 
   describe('The ClientID not set error', () => {
     it('should explain that the env variable is not set', () => {
-      vi.unstubAllEnvs();
+      vi.stubEnv('SPOTIFY_CLIENT_ID', undefined);
 
       expect(getClientID).toThrow('Client ID is not set, check config.');
     });
@@ -82,14 +82,14 @@ describe('The getClientSecret function', () => {
   });
 
   it('should throw an error if the env variable is not set', async () => {
-    vi.unstubAllEnvs();
+    vi.stubEnv('SPOTIFY_CLIENT_SECRET', undefined);
 
     expect(getClientSecret).toThrow();
   });
 
   describe('The ClientSecret not set error', () => {
     it('should explain that the env variable is not set', async () => {
-      vi.unstubAllEnvs();
+      vi.stubEnv('SPOTIFY_CLIENT_SECRET', undefined);
 
       expect(getClientSecret).toThrow(
         'Client Secret is not set, check config.',
