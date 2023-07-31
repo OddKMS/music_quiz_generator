@@ -1,6 +1,5 @@
 import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest';
 import { getPlaylist, getPlaylistID } from '#lib/PlaylistReader';
-import { authenticate } from '#lib/Auth';
 import { createFetchResponse } from '#testHelpers';
 import { Playlist } from '@spotify/web-api-ts-sdk';
 
@@ -13,8 +12,6 @@ const mockAuthResponse = {
   token_type: '',
   expires_in: 0,
 };
-
-const testPlaylist = 'https://open.spotify.com/playlist/37i9dQZF1E4n88A5W2O28m';
 
 vi.mock('#lib/Auth', () => ({
   authenticate: vi.fn(async () => {
