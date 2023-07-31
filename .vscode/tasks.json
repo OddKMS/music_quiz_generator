@@ -5,7 +5,7 @@
       "type": "npm",
       "script": "build",
       "group": "build",
-      "problemMatcher": [],
+      "problemMatcher": ["$tsc"],
       "label": "npm: build",
       "detail": "tsc && vite build",
       "presentation": {
@@ -21,7 +21,7 @@
       "type": "npm",
       "script": "dev",
       "group": "none",
-      "problemMatcher": [],
+      "problemMatcher": ["$tsc-watch"],
       "label": "run dev server",
       "detail": "vite",
       "presentation": {
@@ -38,9 +38,17 @@
       "type": "npm",
       "script": "test",
       "group": "test",
-      "problemMatcher": [],
+      "problemMatcher": {
+        "base": "$tsc",
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "^.*(DEV|RUN|RERUN).*$",
+          "endsPattern": "^.*(PASS|FAIL).*$"
+        }
+      },
       "label": "npm: test",
       "detail": "vitest",
+      "isBackground": true,
       "presentation": {
         "echo": false,
         "reveal": "always",
@@ -53,8 +61,7 @@
     },
     {
       "label": "Dev: Test & Watch",
-      "dependsOn": ["run dev server", "npm: test"],
-      "problemMatcher": []
+      "dependsOn": ["run dev server", "npm: test"]
     }
   ]
 }
