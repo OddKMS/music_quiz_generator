@@ -1,4 +1,4 @@
-import { cleanup, render, renderHook } from '@testing-library/react';
+import { cleanup, render } from '@testing-library/react';
 import { afterEach } from 'vitest';
 
 afterEach(() => {
@@ -11,10 +11,6 @@ function customRender(ui: React.ReactElement, options = {}) {
     wrapper: ({ children }) => children,
     ...options,
   });
-}
-
-export function testHookRender(hook: Function) {
-  return renderHook(() => hook()).result.current;
 }
 
 export * from '@testing-library/react';
