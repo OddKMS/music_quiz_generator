@@ -7,14 +7,8 @@
     {
       "name": "Attatch to Vitest",
       "port": 9229,
+      "address": "localhost",
       "request": "attach",
-      "skipFiles": [
-        "${workspaceFolder}/node_modules/**/*.js",
-        "${workspaceFolder}\\node_modules\\**\\*.js",
-        "<node_internals>/**/*.js",
-        "<node_internals>\\**\\*.js",
-        "!**/node_modules/vitest/*"
-      ],
       "type": "node",
       "presentation": {
         "hidden": false,
