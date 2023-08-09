@@ -26,6 +26,7 @@
       "#helpers/*": ["src/lib/helpers/*"],
       "#lib/*": ["src/lib/*"],
       "#components/*": ["src/client/components/*"],
+      "#contexts": ["src/client/contexts"],
       "#libTestUtils": ["src/lib/test/testUtils.ts"],
       "#clientTestUtils": ["src/client/test/testUtils.tsx"],
       "#server/*": ["src/server/*"],

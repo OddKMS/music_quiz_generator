@@ -14,6 +14,7 @@ export default defineConfig({
       '#helpers': path.resolve(__dirname, './src/lib/helpers'),
       '#lib': path.resolve(__dirname, './src/lib'),
       '#libTestUtils': path.resolve(__dirname, './src/lib/test/testUtils.ts'),
+      '#contexts': path.resolve(__dirname, './src/client/contexts'),
       '#components': path.resolve(__dirname, './src/client/components'),
       '#clientTestUtils': path.resolve(
         __dirname,
