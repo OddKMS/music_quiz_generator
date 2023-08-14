@@ -11,8 +11,8 @@ export default defineConfig({
     alias: {
       '#': path.resolve(__dirname, './src'),
       '#assets': path.resolve(__dirname, './src/assets'),
-      '#helpers': path.resolve(__dirname, './src/lib/helpers'),
       '#lib': path.resolve(__dirname, './src/lib'),
+      '#helpers': path.resolve(__dirname, './src/lib/helpers'),
       '#libTestUtils': path.resolve(__dirname, './src/lib/test/testUtils.ts'),
       '#contexts': path.resolve(__dirname, './src/client/contexts'),
       '#components': path.resolve(__dirname, './src/client/components'),

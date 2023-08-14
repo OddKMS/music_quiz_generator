@@ -11,3 +11,5 @@ describe('the PlaylistSearch component', () => {
 
   it.todo('should let the user start the search with the enter key', () => {});
 });
+
+const testPlaylistSearch = () => {};

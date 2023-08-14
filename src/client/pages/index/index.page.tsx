@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { Counter } from '#components/Counter';
+import { PageProps } from '#musicquizgenerator/types';
+import { Playlist } from '@spotify/web-api-ts-sdk';
+import { indexPageProps } from './index.page.server';
 
-function Page({ auth }) {
+function Page({ playlist }: indexPageProps) {
+  const playlistTest = playlist as Playlist;
+
   return (
     <>
       <h1>Welcome</h1>
@@ -10,10 +15,7 @@ function Page({ auth }) {
         <li>Rendered to HTML.</li>
         <li>
           Interactive. <Counter />
-          <div>Authenticate test</div>
-          <div>Access token: {auth?.access_token}</div>
-          <div>Type: {auth?.token_type}</div>
-          <div>Expires in: {auth?.expires_in}</div>
+          <div>{JSON.stringify(playlistTest)}</div>
         </li>
       </ul>
     </>

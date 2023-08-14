@@ -1,3 +1,4 @@
+import { SpotifyApi } from '@spotify/web-api-ts-sdk';
 import type {
   PageContextBuiltIn,
   /*
@@ -12,10 +13,12 @@ import type {
 type Page = (pageProps: PageProps) => React.ReactElement;
 type PageProps = Record<string, unknown>;
 
+// Add custom types as we need it here
 type PageContextCustom = {
   Page: Page;
   pageProps?: PageProps;
   urlPathname: string;
+  spotifySdk: SpotifyApi;
   exports: {
     documentProps?: {
       title?: string;

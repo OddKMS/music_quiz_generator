@@ -8,6 +8,18 @@ import express from 'express';
 import compression from 'compression';
 import { renderPage } from 'vite-plugin-ssr/server';
 import 'dotenv/config';
+import {
+  DefaultResponseDeserializer,
+  DefaultResponseValidator,
+  DocumentLocationRedirectionStrategy,
+  InMemoryCachingStrategy,
+  LocalStorageCachingStrategy,
+  NoOpErrorHandler,
+  SdkConfiguration,
+  SpotifyApi,
+} from '@spotify/web-api-ts-sdk';
+import { getClientID, getClientSecret } from '#lib/Auth';
+import { isBrowser } from 'browser-or-node';
 const isProduction = process.env.NODE_ENV === 'production';
 
 startServer();
@@ -37,14 +49,38 @@ async function startServer() {
   // Other middlewares (e.g. some RPC middleware such as Telefunc)
   // ...
 
+  const defaultConfig: SdkConfiguration = {
+    fetch: (req: RequestInfo | URL, init: RequestInit | undefined) =>
+      fetch(req, init),
+    beforeRequest: (_: string, __: RequestInit) => {},
+    afterRequest: (_: string, __: RequestInit, ___: Response) => {},
+    deserializer: new DefaultResponseDeserializer(),
+    responseValidator: new DefaultResponseValidator(),
+    errorHandler: new NoOpErrorHandler(),
+    redirectionStrategy: new DocumentLocationRedirectionStrategy(),
+    cachingStrategy: isBrowser
+      ? new LocalStorageCachingStrategy()
+      : new InMemoryCachingStrategy(),
+  };
+
+  const spotifySdk = SpotifyApi.withClientCredentials(
+    getClientID(),
+    getClientSecret(),
+    [],
+    defaultConfig,
+  );
+
   // Vite-plugin-ssr middleware. It should always be our last middleware (because it's a
   // catch-all middleware superseding any middleware placed after it).
   app.get('*', async (req, res, next) => {
     const pageContextInit = {
       urlOriginal: req.originalUrl,
+      spotifySdk,
     };
+
     const pageContext = await renderPage(pageContextInit);
     const { httpResponse } = pageContext;
+
     if (!httpResponse) {
       return next();
     } else {

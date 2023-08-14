@@ -20,11 +20,10 @@
 
     "paths": {
       "*": ["src/types/*"],
-      "#musicquizgenerator/*": ["src/*"],
       "#assets": ["src/assets"],
+      "#lib/*": ["src/lib/*"],
       "#helpers": ["src/lib/helpers"],
       "#helpers/*": ["src/lib/helpers/*"],
-      "#lib/*": ["src/lib/*"],
       "#components/*": ["src/client/components/*"],
       "#contexts": ["src/client/contexts"],
       "#libTestUtils": ["src/lib/test/testUtils.ts"],
@@ -33,10 +32,6 @@
       "#hooks/*": ["src/client/hooks/*"],
       "#musicquizgenerator/types": ["src/types"]
     }
-  },
-  "ts-node": {
-    // Tell ts-node CLI to install the --loader automatically
-    "esm": false
   },
   "include": ["src", "src/**/*.json"],
   "references": [{ "path": "./tsconfig.node.json" }]
