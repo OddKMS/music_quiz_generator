@@ -10,6 +10,7 @@
       "address": "localhost",
       "request": "attach",
       "type": "node",
+      "internalConsoleOptions": "neverOpen",
       "presentation": {
         "hidden": false,
         "group": "debug",
