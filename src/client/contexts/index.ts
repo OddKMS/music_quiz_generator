@@ -1,3 +1,6 @@
 import AuthContext from './AuthContext/authentication.context';
+import SpotifyContext, {
+  SpotifyProvider,
+} from './SpotifyContext/spotify.context';
 
-export { AuthContext };
+export { AuthContext, SpotifyContext, SpotifyProvider };
