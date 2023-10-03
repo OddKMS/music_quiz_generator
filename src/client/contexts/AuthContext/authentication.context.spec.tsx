@@ -1,14 +1,11 @@
 import { AuthContext } from '#contexts';
 import { createFetchResponse } from '#libTestUtils';
-import { render, waitFor } from '#clientTestUtils';
-import { beforeEach, describe, expect, it, vi, vitest } from 'vitest';
-import React, { useContext, useState } from 'react';
+import { render } from '#clientTestUtils';
+import { describe, expect, it, vi } from 'vitest';
+import { useContext } from 'react';
 import * as authenticator from '#lib/Auth';
 import { act } from 'react-dom/test-utils';
-import Module from 'module';
 import { AuthenticationProvider } from './authentication.context';
-import { isExpression } from 'typescript';
-import { addMinutes } from 'date-fns';
 
 const mockAuthResponse = {
   access_token: 'test token',
@@ -22,18 +19,9 @@ vi.mock('#lib/Auth', () => ({
   }),
 }));
 
-vi.mock('react', async () => {
-  const reactMock: Module = await vi.importActual('react');
-  return {
-    ...reactMock,
-  };
-});
-
 describe('The authentication context', () => {
   it('should provide the expected token and details', async () => {
-    const { getByTestId } = await act(async () => {
-      return renderTestComponent();
-    });
+    const { getByTestId } = await act(async () => renderTestComponent());
 
     expect(getByTestId('access-token')).toHaveTextContent(
       mockAuthResponse.access_token,
