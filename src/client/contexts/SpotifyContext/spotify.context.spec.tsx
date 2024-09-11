@@ -2,10 +2,10 @@ import { AccessToken, SpotifyApi } from '@spotify/web-api-ts-sdk';
 import { SpotifyContext, SpotifyProvider } from '#contexts';
 import { it, vi, describe, expect, expectTypeOf } from 'vitest';
 import { useContext, useEffect, useState } from 'react';
-import { act, render, renderHook, waitFor } from '#clientTestUtils';
+import { render, renderHook, waitFor } from '#clientTestUtils';
 import { getClientID, getClientSecret } from '#lib/Auth';
 
-const mockSpotifyAuth = {
+const mockSpotifyAuth: AccessToken = {
   access_token: 'HEy!',
   token_type: 'great',
   expires_in: 5,
@@ -18,15 +18,14 @@ vi.mock('@spotify/web-api-ts-sdk', async () => {
     '@spotify/web-api-ts-sdk',
   );
 
-  // TODO: Read up on how to mock classes
   return {
     SpotifyApi: {
       ...spotifyApi,
       withClientCredentials: vi.fn(() => {
-        return spotifyApi;
+        return SpotifyApi;
       }),
       getAccessToken: vi.fn(async (): Promise<AccessToken> => {
-        return mockSpotifyAuth;
+        return Promise.resolve(mockSpotifyAuth);
       }),
     },
   };
