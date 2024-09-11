@@ -1,18 +1,20 @@
-export default [
-  {
-    env: { browser: true, es2020: true },
-    extends: [
-      'eslint:recommended',
-      'plugin:@typescript-eslint/recommended',
-      'plugin:react-hooks/recommended',
-      'prettier',
-    ],
-    parser: '@typescript-eslint/parser',
+import eslint from '@eslint/js';
+import tseslint from 'typescript-eslint';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import reactHooks from 'eslint-plugin-react-hooks';
+import reactRefresh from 'eslint-plugin-react-refresh';
+
+export default tseslint.config({
+  extends: [
+    eslint.configs.recommended,
+    eslintConfigPrettier,
+    ...tseslint.configs.recommended,
+  ],
+  languageOptions: {
     parserOptions: { ecmaVersion: 'latest', sourceType: 'module' },
-    plugins: ['react-refresh'],
-    rules: {
-      'react-refresh/only-export-components': 'warn',
-      'comma-dangle': 'always-multiline',
-    },
   },
-];
+  plugins: { 'react-refresh': reactRefresh, 'react-hooks': reactHooks },
+  rules: {
+    'react-refresh/only-export-components': 'warn',
+  },
+});
