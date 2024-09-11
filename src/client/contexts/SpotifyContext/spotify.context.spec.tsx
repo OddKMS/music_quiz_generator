@@ -66,12 +66,10 @@ const SpotifyContextTestComponent = () => {
   });
 
   return (
-    <>
-      <div>
-        This is the authentication token from Spotify:
-        <div data-testid="spotify-token">{authToken}</div>
-      </div>
-    </>
+    <div>
+      This is the authentication token from Spotify:
+      <div data-testid="spotify-token">{authToken}</div>
+    </div>
   );
 };
 
