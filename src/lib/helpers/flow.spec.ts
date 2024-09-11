@@ -1,5 +1,5 @@
 import { Playlist } from '@spotify/web-api-ts-sdk';
-import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest';
+import { describe, expectTypeOf, it, vi } from 'vitest';
 
 describe('The Music Quiz Generator', () => {
   it('Should get a playlist', async () => {
