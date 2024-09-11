@@ -30,7 +30,7 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     passWithNoTests: true,
-    setupFiles: './src/client/test/setup.ts',
+    setupFiles: ['./src/client/test/setup.ts', 'dotenv/config'],
   },
   server: {
     middlewareMode: true,
