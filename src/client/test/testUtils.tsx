@@ -1,8 +1,13 @@
 import { cleanup, render } from '@testing-library/react';
-import { afterEach } from 'vitest';
+import { afterEach, vi } from 'vitest';
 
 afterEach(() => {
   cleanup();
+});
+
+afterAll(() => {
+  vi.clearAllMocks();
+  vi.resetAllMocks();
 });
 
 function customRender(ui: React.ReactElement, options = {}) {
