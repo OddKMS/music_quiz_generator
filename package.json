@@ -23,7 +23,7 @@
     "esModuleInterop": true
   },
   "dependencies": {
-    "@spotify/web-api-ts-sdk": "^1.0.3",
+    "@spotify/web-api-ts-sdk": "^1.2.0",
     "browser-or-node": "^2.1.1",
     "compression": "^1.7.4",
     "date-fns": "^2.30.0",
